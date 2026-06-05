@@ -1,0 +1,519 @@
+{
+  "athlete": "Pedro Morales Alcocer",
+  "meta": {
+    "tipo_meso": "Acumulación",
+    "duracion_semanas": 6,
+    "fecha_inicio": "2026-01-17",
+    "fecha_competicion": "2026-07-19",
+    "weeks_out": 7,
+    "blocks_out": 1.2
+  },
+  "sessions": [
+    {
+      "n": 1,
+      "day": "Lunes",
+      "label": "Sesion 1",
+      "exercises": [
+        {
+          "name": "BP",
+          "tipo": "Top set",
+          "variante": "Movimientos de Competición",
+          "patron": "Empuje horizontal",
+          "sets": 1,
+          "reps": 1,
+          "rpe": 7,
+          "peso_sugerido": 80,
+          "peso_w1": 130,
+          "rpe_obtenido": null,
+          "realizado": false
+        },
+        {
+          "name": "BP",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Empuje horizontal",
+          "sets": 3,
+          "reps": 3,
+          "rpe": "Rampa 6-8",
+          "peso_sugerido": 70,
+          "peso_w1": null,
+          "rpe_obtenido": null,
+          "realizado": false
+        },
+        {
+          "name": "Jalon al Pecho",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Traccion vertical",
+          "sets": 3,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": null,
+          "realizado": false
+        },
+        {
+          "name": "Cristos",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Empuje vertical",
+          "sets": 3,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "Remo Barra",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Tracción horizontal",
+          "sets": 3,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "Ext Tricep",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Triceps",
+          "sets": 2,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "day": "Martes",
+      "label": "SQ PRIMARIA + DL SECUNDARIO",
+      "exercises": [
+        {
+          "name": "SQ",
+          "tipo": "Top set",
+          "variante": "Movimientos de Competición",
+          "patron": "Dominante de rodilla",
+          "sets": 1,
+          "reps": 1,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 120,
+          "rpe_obtenido": 8,
+          "realizado": true
+        },
+        {
+          "name": "SQ",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Dominante de rodilla",
+          "sets": 3,
+          "reps": 3,
+          "rpe": 5,
+          "peso_sugerido": null,
+          "peso_w1": 95,
+          "rpe_obtenido": 5,
+          "realizado": true
+        },
+        {
+          "name": "DL CONV",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Bisagra de cadera",
+          "sets": 3,
+          "reps": 3,
+          "rpe": "Rampa 6-8",
+          "peso_sugerido": null,
+          "peso_w1": 110,
+          "rpe_obtenido": 6,
+          "realizado": true
+        },
+        {
+          "name": "Patada de Gluteo",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Bisagra de cadera",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 44,
+          "rpe_obtenido": 7,
+          "realizado": true
+        },
+        {
+          "name": "Leg Ext",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Dominante de rodilla",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 41,
+          "rpe_obtenido": 7,
+          "realizado": true
+        },
+        {
+          "name": "Leg Curl",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Bisagra de cadera",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 27,
+          "rpe_obtenido": "---",
+          "realizado": true
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "day": "Miercoles",
+      "label": "BP SECUNDARIO",
+      "exercises": [
+        {
+          "name": "BP",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Empuje horizontal",
+          "sets": 4,
+          "reps": 3,
+          "rpe": "Rampa 6-8",
+          "peso_sugerido": null,
+          "peso_w1": 90,
+          "rpe_obtenido": 8,
+          "realizado": true
+        },
+        {
+          "name": "Bp Inclinado Barra",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Empuje horizontal",
+          "sets": 3,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 60,
+          "rpe_obtenido": 7,
+          "realizado": true
+        },
+        {
+          "name": "Press Militar",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Empuje vertical",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 50,
+          "rpe_obtenido": 7,
+          "realizado": true
+        },
+        {
+          "name": "Laterales",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Deltoide lateral",
+          "sets": 4,
+          "reps": 12,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 7,
+          "rpe_obtenido": 7,
+          "realizado": true
+        },
+        {
+          "name": "Ext Tricep",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Triceps",
+          "sets": 4,
+          "reps": 12,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 11,
+          "rpe_obtenido": 6,
+          "realizado": true
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "day": "Jueves",
+      "label": "SQ SECUNDARIA",
+      "exercises": [
+        {
+          "name": "SQ",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Dominante de rodilla",
+          "sets": 4,
+          "reps": 3,
+          "rpe": "Rampa 6-8",
+          "peso_sugerido": null,
+          "peso_w1": 110,
+          "rpe_obtenido": 8,
+          "realizado": true
+        },
+        {
+          "name": "BSSQ",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Dominante de rodilla",
+          "sets": 4,
+          "reps": 15,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 28,
+          "rpe_obtenido": 8,
+          "realizado": false
+        },
+        {
+          "name": "Cable Row",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Tracción horizontal",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 60,
+          "rpe_obtenido": 7,
+          "realizado": false
+        },
+        {
+          "name": "Lapulldown",
+          "tipo": "ACC Multi",
+          "variante": "Hipertrofia",
+          "patron": "Traccion vertical",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": 66,
+          "rpe_obtenido": 7,
+          "realizado": false
+        },
+        {
+          "name": "Curl Bicep Maquina",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Biceps",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "day": "Viernes",
+      "label": "DL PRIMARIO",
+      "exercises": [
+        {
+          "name": "DL CONV",
+          "tipo": "Top set",
+          "variante": "Movimientos de Competición",
+          "patron": "Bisagra de cadera",
+          "sets": 1,
+          "reps": 1,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "DL CONV",
+          "tipo": "Backdown",
+          "variante": "Movimientos de Competición",
+          "patron": "Bisagra de cadera",
+          "sets": 3,
+          "reps": 3,
+          "rpe": 5,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "Leg Curl",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Flexión de Rodilla",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "BP 2cnt",
+          "tipo": "Backdown",
+          "variante": "Tempo Control",
+          "patron": "Empuje horizontal",
+          "sets": 4,
+          "reps": 2,
+          "rpe": "Rampa 5-8",
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "Ext Tricep",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Triceps",
+          "sets": 4,
+          "reps": 10,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        },
+        {
+          "name": "Laterales",
+          "tipo": "ACC Aislado",
+          "variante": "Hipertrofia",
+          "patron": "Deltoide lateral",
+          "sets": 3,
+          "reps": 12,
+          "rpe": 7,
+          "peso_sugerido": null,
+          "peso_w1": null,
+          "rpe_obtenido": "---",
+          "realizado": false
+        }
+      ]
+    }
+  ],
+  "rpe_scale": [
+    {
+      "rpe": 10.0,
+      "desc": "0 REPS EN EL TANQUE. VISUALMENTE SERÍA UN ESFUERZO MÁXIMO CON POSIBILIDAD DE FALLARLA.",
+      "sensacion": "Esfuerzo Máximo (10/10)",
+      "objetivo": "Test de Fuerza / PR",
+      "aumento_sugerido": "NO RECOMIENDO LLEGAR AL RPE 10."
+    },
+    {
+      "rpe": 9.5,
+      "desc": "0-1 REPS EN EL TANQUE. Posiblemente sin reservas, pero sin fallo inminente.",
+      "sensacion": "Muy Duro",
+      "objetivo": "Test de Fuerza / PR",
+      "aumento_sugerido": "AUMENTO MÍNIMO (MICROCARGA) O MANTENER"
+    },
+    {
+      "rpe": 9.0,
+      "desc": "1 REP EN EL TANQUE. VISUALMENTE SE VE SUMAMENTE PESADO PERO QUEDANDO EN DUDA SI SALDRÍA UNA CON BUENA TECNICA.",
+      "sensacion": "Muy Duro (9/10)",
+      "objetivo": "Fuerza Base / Hipertrofia",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 2.5 KG A 5 KG."
+    },
+    {
+      "rpe": 8.5,
+      "desc": "1-2 REPS EN EL TANQUE. Visualmente pesado pero la técnica es sólida.",
+      "sensacion": "Duro",
+      "objetivo": "Fuerza / Hipertrofia",
+      "aumento_sugerido": "AUMENTO DE 2.5 KG A 5 KG"
+    },
+    {
+      "rpe": 8.0,
+      "desc": "2 REPS EN EL TANQUE. VISUALMENTE SUPONE VERSE PESADO PERO NO IMPOSIBLE POR EL HECHO DE QUE QUEDAN 2 REPETICIONES DISPONIBLES.",
+      "sensacion": "Vigoroso (8/10)",
+      "objetivo": "Hipertrofia / Volumen",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 5 KG A 7.5 KG."
+    },
+    {
+      "rpe": 7.5,
+      "desc": "2-3 REPS EN EL TANQUE. Visualmente la barra se mueve con autoridad.",
+      "sensacion": "Moderado-Alto",
+      "objetivo": "Hipertrofia / Técnica",
+      "aumento_sugerido": "AUMENTO DE 5 KG A 7.5 KG"
+    },
+    {
+      "rpe": 7.0,
+      "desc": "3 REPS EN EL TANQUE. VISUALMENTE LAS REPETICIONES SE ALENTAN LEVEMENTE PERO SIN COSTAR EN EXCESO. ES UN PESO RETADOR.",
+      "sensacion": "Moderado-Alto (7/10)",
+      "objetivo": "Potencia / Velocidad",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 7.5 KG A 10 KG."
+    },
+    {
+      "rpe": 6.5,
+      "desc": "3-4 REPS EN EL TANQUE. Movimiento rápido y fluido.",
+      "sensacion": "Moderado",
+      "objetivo": "Potencia / Técnica",
+      "aumento_sugerido": "AUMENTO DE 7.5 KG A 10 KG"
+    },
+    {
+      "rpe": 6.0,
+      "desc": "4 REPS EN EL TANQUE. VISUALMENTE TODAS LAS REPETICIONES SE VEN IGUAL RÁPIDAS, YA NO TAN SENCILLAS.",
+      "sensacion": "Moderado (5-6/10)",
+      "objetivo": "Calentamiento / Descarga",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 7.5 KG A 12.5 KG."
+    },
+    {
+      "rpe": 5.5,
+      "desc": "4-5 REPS EN EL TANQUE. Visualmente muy rápido.",
+      "sensacion": "Ligero",
+      "objetivo": "Calentamiento",
+      "aumento_sugerido": "AUMENTO DE 7.5 KG A 12.5 KG"
+    },
+    {
+      "rpe": 5.0,
+      "desc": "5 REPS EN EL TANQUE. VISUALMENTE TODAS LAS REPETICIONES SE VEN IGUAL DE FÁCIL Y RAPIDAS.",
+      "sensacion": "Ligero (4/10)",
+      "objetivo": "Calentamiento",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 7.5 KG A 15 KG."
+    },
+    {
+      "rpe": 4.0,
+      "desc": "6 REPS EN EL TANQUE. ESTE PESO SE PUEDE CONSIDERAR CALENTAMIENTO.",
+      "sensacion": "Muy Ligero",
+      "objetivo": "Calentamiento",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 15 KG A 25 KG."
+    },
+    {
+      "rpe": 3.0,
+      "desc": "7 REPS EN EL TANQUE. ESTE PESO SE PUEDE CONSIDERAR CALENTAMIENTO.",
+      "sensacion": "Muy Ligero",
+      "objetivo": "Calentamiento",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 15 KG A 25 KG."
+    },
+    {
+      "rpe": 2.0,
+      "desc": "8 REPS EN EL TANQUE. ESTE PESO SE PUEDE CONSIDERAR CALENTAMIENTO.",
+      "sensacion": "Extremadamente Ligero",
+      "objetivo": "Activación",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 15 KG A 25 KG."
+    },
+    {
+      "rpe": 1.0,
+      "desc": "9 REPS EN EL TANQUE. ESTE PESO SE PUEDE CONSIDERAR CALENTAMIENTO.",
+      "sensacion": "Sin Esfuerzo",
+      "objetivo": "Movilidad / Activación",
+      "aumento_sugerido": "EL SIGUIENTE AUMENTO SERÍAN 15 KG A 25 KG."
+    }
+  ]
+}
