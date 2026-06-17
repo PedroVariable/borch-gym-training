@@ -2,46 +2,32 @@
 Borch Gym Training — Video Overlay Backend
 ==========================================
 
-Receives a raw video from the mobile app + caption metadata, burns the BorchGym
-overlay into the MP4 using FFmpeg, returns the processed video.
+Receives a raw video + caption metadata, burns the BorchGym overlay into the MP4
+using FFmpeg, returns a JSON pointer the client uses to download the processed file.
 
-The overlay design matches the in-app preview:
-  - Bottom-left: weight x reps @rpe (white on black box)
-  - Below:       exercise name (white on black box)
-  - Below:       tipo/protocolo (white on BorchGym red #990000)
-  - Top-right:   Week badge (black on white pill)
-
-Endpoints:
-  POST /api/process-video   -> burn overlay, return processed mp4 bytes
-  GET  /health              -> liveness probe
+Two-step flow makes binary handling clean on React Native side:
+  1. POST /api/process-video    -> uploads + processes, returns {"download_url": "..."}
+  2. GET  /api/videos/{filename} -> streams the processed mp4 back to the device
 
 Run locally:
   pip install -r requirements.txt
   uvicorn main:app --reload --port 8000
-
-Test with curl:
-  curl -X POST http://localhost:8000/api/process-video \\
-    -F "video=@input.mp4" \\
-    -F "weight=140" -F "reps=5" -F "rpe=8" \\
-    -F "exercise=Sumo Deadlift" -F "tipo=Primary Deadlift" \\
-    -F "week=3" -F "total_weeks=4" \\
-    -o output.mp4
 """
 
 import os
 import shutil
 import subprocess
 import tempfile
+import time
 import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, File, Form, UploadFile, HTTPException
+from fastapi import FastAPI, File, Form, UploadFile, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Borch Gym Training - Video Overlay", version="1.0.0")
+app = FastAPI(title="Borch Gym Training - Video Overlay", version="1.1.0")
 
-# CORS open while developing; tighten to your app's bundle id later if you want.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -50,16 +36,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Optional simple API key — uncomment + set env var BORCH_API_KEY to enable.
-# from fastapi import Header
-# def require_api_key(x_api_key: str = Header(default="")):
-#     expected = os.getenv("BORCH_API_KEY", "")
-#     if not expected or x_api_key != expected:
-#         raise HTTPException(status_code=401, detail="invalid api key")
+# Where processed videos live. Files older than 1 hour get cleaned up.
+VIDEOS_DIR = Path(tempfile.gettempdir()) / "borch_videos"
+VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+FILE_TTL_SECONDS = 60 * 60  # 1 hour
 
 
-# FFmpeg drawtext requires escaping special characters in text strings.
 def escape_drawtext(s: str) -> str:
+    """FFmpeg drawtext requires escaping these special characters in text strings."""
     if s is None:
         return ""
     return (
@@ -73,8 +57,8 @@ def escape_drawtext(s: str) -> str:
 
 
 BORCH_RED = "0x990000"
-DARK_BG = "0x000000C8"   # 78% opacity black
-WHITE_BG = "0xFFFFFFEC"  # 92% opacity white
+DARK_BG   = "0x000000C8"   # 78% opacity black
+WHITE_BG  = "0xFFFFFFEC"   # 92% opacity white
 
 
 def build_filter(weight, reps, rpe, exercise, tipo, week, total_weeks) -> str:
@@ -92,48 +76,62 @@ def build_filter(weight, reps, rpe, exercise, tipo, week, total_weeks) -> str:
     ])
 
 
+def cleanup_old_files():
+    """Sweep processed videos older than TTL so /tmp doesn't fill up on the free dyno."""
+    now = time.time()
+    for f in VIDEOS_DIR.glob("*.mp4"):
+        try:
+            if now - f.stat().st_mtime > FILE_TTL_SECONDS:
+                f.unlink()
+        except Exception:
+            pass
+
+
 @app.get("/health")
 def health():
-    """Render/Railway/Fly use this to keep the dyno warm and check liveness."""
     ffmpeg_ok = shutil.which("ffmpeg") is not None
     return {
         "ok": True,
         "service": "borch-gym-video-overlay",
+        "version": "1.1.0",
         "ffmpeg_available": ffmpeg_ok,
     }
 
 
 @app.post("/api/process-video")
 async def process_video(
+    request: Request,
     video: UploadFile = File(...),
     weight: float = Form(...),
     reps: int = Form(...),
-    rpe: str = Form(...),               # may be a number or label like "Rampa 6-8"
+    rpe: str = Form(...),
     exercise: str = Form(...),
     tipo: str = Form("TOP SET"),
     week: int = Form(1),
     total_weeks: int = Form(6),
 ):
     """
-    Accepts a multipart upload of `video` plus the metadata fields,
-    runs FFmpeg with drawtext filters, returns the processed MP4 as a download.
+    Accepts multipart upload of `video` + metadata fields.
+    Processes with FFmpeg drawtext, saves output to /tmp/borch_videos.
+    Returns JSON: {"download_url": "/api/videos/<filename>", "filename": "..."}
     """
     if shutil.which("ffmpeg") is None:
         raise HTTPException(status_code=500, detail="ffmpeg not installed on server")
 
-    tmp_dir = Path(tempfile.gettempdir()) / f"borch_{uuid.uuid4().hex}"
-    tmp_dir.mkdir(parents=True, exist_ok=True)
-    in_path  = tmp_dir / f"in_{video.filename or 'video.mp4'}"
-    out_path = tmp_dir / "out.mp4"
+    cleanup_old_files()
+
+    file_id = uuid.uuid4().hex
+    in_path  = VIDEOS_DIR / f"in_{file_id}.mp4"
+    out_name = f"borch_{file_id}.mp4"
+    out_path = VIDEOS_DIR / out_name
 
     try:
-        # Stream upload to disk in chunks so big videos don't blow up RAM
+        # Stream upload to disk
         with in_path.open("wb") as f:
             while chunk := await video.read(1024 * 1024):
                 f.write(chunk)
 
         vf = build_filter(weight, reps, rpe, exercise, tipo, week, total_weeks)
-
         cmd = [
             "ffmpeg", "-y",
             "-i", str(in_path),
@@ -150,21 +148,38 @@ async def process_video(
             tail = (result.stderr or "")[-800:]
             raise HTTPException(status_code=500, detail=f"ffmpeg failed: {tail}")
 
-        return FileResponse(
-            path=str(out_path),
-            media_type="video/mp4",
-            filename=f"borch_{uuid.uuid4().hex[:8]}.mp4",
-        )
+        # Build absolute URL from request so client doesn't need to reconstruct
+        download_url = str(request.url_for('serve_video', filename=out_name))
+        return JSONResponse({
+            "ok": True,
+            "filename": out_name,
+            "download_url": download_url,
+            "size_bytes": out_path.stat().st_size,
+        })
 
     except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=504, detail="ffmpeg timeout (>180s) — video too long or server too slow")
+        raise HTTPException(status_code=504, detail="ffmpeg timeout (>180s)")
     finally:
-        # Clean up the input now; the output file is deleted by FileResponse's background task
-        # only AFTER the response finishes streaming, so we leave it for the runtime to GC.
         try:
             in_path.unlink(missing_ok=True)
         except Exception:
             pass
+
+
+@app.get("/api/videos/{filename}", name="serve_video")
+async def serve_video(filename: str):
+    """Streams a previously-processed video back to the client."""
+    # Prevent path traversal
+    if "/" in filename or "\\" in filename or ".." in filename:
+        raise HTTPException(status_code=400, detail="invalid filename")
+    path = VIDEOS_DIR / filename
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="video not found or expired")
+    return FileResponse(
+        path=str(path),
+        media_type="video/mp4",
+        filename=filename,
+    )
 
 
 if __name__ == "__main__":
