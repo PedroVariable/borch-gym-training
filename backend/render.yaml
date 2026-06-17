@@ -1,0 +1,14 @@
+# Render.com Blueprint — auto-deploys this backend.
+# Connect this repo to Render, choose "Blueprint", and it picks up this file.
+services:
+  - type: web
+    name: borch-gym-video-overlay
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000
